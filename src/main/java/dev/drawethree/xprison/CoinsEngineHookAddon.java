@@ -3,6 +3,7 @@ package dev.drawethree.xprison;
 import dev.drawethree.xprison.api.XPrisonAPI;
 import dev.drawethree.xprison.api.addons.XPrisonAddon;
 import dev.drawethree.xprison.currency.CoinsEngineCurrency;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import su.nightexpress.coinsengine.api.CoinsEngineAPI;
 import su.nightexpress.coinsengine.api.currency.Currency;
@@ -22,6 +23,12 @@ public final class CoinsEngineHookAddon implements XPrisonAddon, Listener {
         instance = this;
         api = XPrisonAPI.getInstance();
         coinsEngineCurrencyList = new ArrayList<>();
+
+        if (!Bukkit.getPluginManager().isPluginEnabled("CoinsEngine")) {
+            Bukkit.getLogger().warning("CoinsEngine plugin not found! No CoinsEngine currencies will be supported.");
+            onDisable();
+            return;
+        }
 
         Collection<Currency> currencies = CoinsEngineAPI.getCurrencies();
         for (Currency currency : currencies) {
