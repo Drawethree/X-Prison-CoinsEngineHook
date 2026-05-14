@@ -25,7 +25,7 @@ public final class ExcellentEconomyHookAddon implements XPrisonAddon, Listener {
         api = XPrisonAPI.getInstance();
         excellentEconomyCurrencyList = new ArrayList<>();
 
-        if (!Bukkit.getPluginManager().getPlugin("CoinsEngine").isEnabled()) {
+        if (!Bukkit.getPluginManager().getPlugin("ExcellentEconomy").isEnabled()) {
             Bukkit.getLogger().warning("ExcellentEconomy plugin not found! No ExcellentEconomy currencies will be supported.");
             onDisable();
             return;
